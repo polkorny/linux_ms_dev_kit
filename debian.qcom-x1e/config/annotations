@@ -1870,7 +1870,7 @@ CONFIG_CC_NO_ARRAY_BOUNDS                       policy<{'arm64': 'y'}>
 CONFIG_CC_NO_STRINGOP_OVERFLOW                  policy<{'arm64': 'y'}>
 CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE              policy<{'arm64': 'y'}>
 CONFIG_CC_OPTIMIZE_FOR_SIZE                     policy<{'arm64': 'n'}>
-CONFIG_CC_VERSION_TEXT                          policy<{'arm64': '"aarch64-linux-gnu-gcc-15 (Ubuntu 15.2.0-16ubuntu1) 15.2.0"'}>
+CONFIG_CC_VERSION_TEXT                          policy<{'arm64': '"gcc (Debian 15.2.0-17) 15.2.0"'}>
 CONFIG_CDNS_I3C_MASTER                          policy<{'arm64': 'm'}>
 CONFIG_CDROM                                    policy<{'arm64': 'y'}>
 CONFIG_CDX_BUS                                  policy<{'arm64': 'y'}>
@@ -4382,6 +4382,7 @@ CONFIG_GPIO_HISI                                policy<{'arm64': 'm'}>
 CONFIG_GPIO_HLWD                                policy<{'arm64': 'm'}>
 CONFIG_GPIO_IDIO_16                             policy<{'arm64': 'm'}>
 CONFIG_GPIO_IMX_SCU                             policy<{'arm64': 'y'}>
+CONFIG_GPIO_IRQ_MUX                             policy<{'arm64': 'y'}>
 CONFIG_GPIO_JANZ_TTL                            policy<{'arm64': 'm'}>
 CONFIG_GPIO_KEMPLD                              policy<{'arm64': 'm'}>
 CONFIG_GPIO_LATCH                               policy<{'arm64': 'm'}>
@@ -9747,7 +9748,7 @@ CONFIG_RUSTC_HAS_UNNECESSARY_TRANSMUTES         policy<{'arm64': 'y'}>
 CONFIG_RUSTC_LLVM_MAJOR_VERSION                 policy<{'arm64': '21'}>
 CONFIG_RUSTC_LLVM_VERSION                       policy<{'arm64': '210108'}>
 CONFIG_RUSTC_SUPPORTS_ARM64                     policy<{'arm64': 'y'}>
-CONFIG_RUSTC_VERSION                            policy<{'arm64': '109301'}>
+CONFIG_RUSTC_VERSION                            policy<{'arm64': '109500'}>
 CONFIG_RUST_IS_AVAILABLE                        policy<{'arm64': 'y'}>
 CONFIG_RV                                       policy<{'arm64': 'y'}>
 CONFIG_RVU_ESWITCH                              policy<{'arm64': 'm'}>
