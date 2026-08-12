@@ -4623,6 +4623,7 @@ CONFIG_GPIO_HISI                                policy<{'arm64': 'm'}>
 CONFIG_GPIO_HLWD                                policy<{'arm64': 'm'}>
 CONFIG_GPIO_IDIO_16                             policy<{'arm64': 'm'}>
 CONFIG_GPIO_IMX_SCU                             policy<{'arm64': 'y'}>
+CONFIG_GPIO_IRQ_MUX                             policy<{'arm64': 'y'}>
 CONFIG_GPIO_JANZ_TTL                            policy<{'arm64': 'm'}>
 CONFIG_GPIO_KEMPLD                              policy<{'arm64': 'm'}>
 CONFIG_GPIO_LATCH                               policy<{'arm64': 'm'}>
