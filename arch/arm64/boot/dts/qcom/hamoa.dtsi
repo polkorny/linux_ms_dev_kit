@@ -648,7 +648,7 @@
 		};
 
 		gpu_microcode_mem: gpu-microcode@8d9fe000 {
-			reg = <0x0 0x8d9fe000 0x0 0x2000>;
+			reg = <0x0 0x8d9fc000 0x0 0x4000>;
 			no-map;
 		};
 
