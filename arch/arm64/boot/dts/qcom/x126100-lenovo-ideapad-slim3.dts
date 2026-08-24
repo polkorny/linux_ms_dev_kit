@@ -887,7 +887,7 @@
 };
 
 &gpu_zap_shader {
-	firmware-name = "qcom/x1p42100/LENOVO/83N3/qcdxkmsucpurwa.mbn";
+	firmware-name = "qcom/x1p42100/LENOVO/83N3/qcdxkmsuc8380.mbn";
 };
 
 &i2c0 {
