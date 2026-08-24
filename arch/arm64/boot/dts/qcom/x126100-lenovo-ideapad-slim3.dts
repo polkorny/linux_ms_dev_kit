@@ -248,6 +248,17 @@
 		regulator-always-on;
 	};
 
+	vreg_audio_en: regulator-audio-en {
+		compatible = "regulator-fixed";
+		regulator-name = "VREG_AUDIO_EN";
+		gpio = <&tlmm 68 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		pinctrl-0 = <&audio_en_default>;
+		pinctrl-names = "default";
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
 	vreg_nvme: regulator-nvme {
 		compatible = "regulator-fixed";
 
@@ -357,10 +368,8 @@
 				"IN1_HPHL", "HPHL_OUT",
 				"IN2_HPHR", "HPHR_OUT",
 				"AMIC2", "MIC BIAS2",
-				"VA DMIC0", "MIC BIAS3",
-				"VA DMIC1", "MIC BIAS3",
-				"VA DMIC0", "VA MIC BIAS1",
-				"VA DMIC1", "VA MIC BIAS1",
+				"DMIC0 Pin", "vdd-micb",
+				"DMIC1 Pin", "vdd-micb",
 				"TX SWR_INPUT1", "ADC2_OUTPUT";
 
 		displayport-0-dai-link {
@@ -1068,45 +1077,6 @@
 	//	status = "okay";
 	//};
 
-&lpass_tlmm {
-	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
-		pins = "gpio12";
-		function = "gpio";
-		drive-strength = <16>;
-		bias-disable;
-		output-high;
-	};
-
-	spkr_23_sd_n_active: spkr-23-sd-n-active-state {
-		pins = "gpio13";
-		function = "gpio";
-		drive-strength = <16>;
-		bias-disable;
-		output-high;
-	};
-
-	spkr_01_sd_n_sleep: spkr-01-sd-n-sleep-state {
-		pins = "gpio12";
-		function = "gpio";
-		bias-disable;
-		output-low;
-	};
-
-	spkr_23_sd_n_sleep: spkr-23-sd-n-sleep-state {
-		pins = "gpio13";
-		function = "gpio";
-		bias-disable;
-		output-low;
-	};
-
-	wsa_swr_sleep: wsa-swr-sleep-state {
-		pins = "gpio10", "gpio11";
-		function = "gpio";
-		bias-disable;
-		output-low;
-	};
-};
-
 &lpass_vamacro {
 	pinctrl-0 = <&dmic01_default>;
 	pinctrl-names = "default";
@@ -1388,14 +1358,14 @@
 &swr0 {
 	status = "okay";
 
-	pinctrl-0 = <&wsa_swr_active>, <&spkr_01_sd_n_active>;
+	pinctrl-0 = <&wsa_swr_active>, <&spkr_en1_default>, <&spkr_en2_default>;
 	pinctrl-names = "default";
 
 	/* WSA8845, Left Speaker */
 	left_spkr: speaker@0,0 {
 		compatible = "sdw20217020400";
 		reg = <0 0>;
-		powerdown-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
+		powerdown-gpios = <&tlmm 204 GPIO_ACTIVE_LOW>;
 		#sound-dai-cells = <0>;
 		sound-name-prefix = "SpkrLeft";
 		vdd-1p8-supply = <&vreg_l15b_1p8>;
@@ -1407,7 +1377,7 @@
 	right_spkr: speaker@0,1 {
 		compatible = "sdw20217020400";
 		reg = <0 1>;
-		powerdown-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_HIGH>;
+		powerdown-gpios = <&tlmm 205 GPIO_ACTIVE_LOW>;
 		#sound-dai-cells = <0>;
 		sound-name-prefix = "SpkrRight";
 		vdd-1p8-supply = <&vreg_l15b_1p8>;
@@ -1477,6 +1447,27 @@
 		pins = "gpio70";
 		function = "gpio";
 		drive-strength = <16>;
+		bias-disable;
+	};
+
+	spkr_en1_default: spkr-en1-default-state {
+		pins = "gpio204";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	spkr_en2_default: spkr-en2-default-state {
+		pins = "gpio205";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	audio_en_default: audio-en-default-state {
+		pins = "gpio68";
+		function = "gpio";
+		drive-strength = <2>;
 		bias-disable;
 	};
 
