@@ -137,7 +137,7 @@
 			compatible = "usb-c-connector";
 			reg = <0>;
 			power-role = "dual";
-			data-role = "host";
+			data-role = "dual";
 
 			ports {
 				#address-cells = <1>;
@@ -450,25 +450,6 @@
 		port {
 			usb_1_ss0_sbu_mux: endpoint {
 				remote-endpoint = <&pmic_glink_ss0_sbu>;
-			};
-		};
-	};
-
-	usb-1-ss1-sbu-mux {
-		compatible = "onnn,fsusb42", "gpio-sbu-mux";
-
-		enable-gpios = <&tlmm 179 GPIO_ACTIVE_LOW>;
-		select-gpios = <&tlmm 178 GPIO_ACTIVE_HIGH>;
-
-		pinctrl-0 = <&usb_1_ss1_sbu_default>;
-		pinctrl-names = "default";
-
-		mode-switch;
-		orientation-switch;
-
-		port {
-			usb_1_ss1_sbu_mux: endpoint {
-				remote-endpoint = <&pmic_glink_ss1_sbu>;
 			};
 		};
 	};
@@ -1648,6 +1629,9 @@
 &usb_1_ss0_qmpphy {
 	vdda-phy-supply = <&vreg_l2j_1p2>;
 	vdda-pll-supply = <&vreg_l1j_0p8>;
+
+	orientation-switch;
+	mode-switch;
 
 	status = "okay";
 };
