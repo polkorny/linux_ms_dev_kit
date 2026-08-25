@@ -74,6 +74,7 @@
 			wakeup-source;
 			wakeup-event-action = <EV_ACT_DEASSERTED>;
 		};
+
 	};
 
 	gpio67_irqmux: irq-mux {
@@ -86,10 +87,7 @@
 	};
 
 	hdmi-bridge {
-		compatible = "realtek,rtd2171";
-
-		pinctrl-0 = <&hdmi_hpd_default>;
-		pinctrl-names = "default";
+		compatible = "parade,ps185hdm";
 
 		ports {
 			#address-cells = <1>;
@@ -116,6 +114,8 @@
 	hdmi-connector {
 		compatible = "hdmi-connector";
 		type = "a";
+
+		hpd-gpios = <&tlmm 77 GPIO_ACTIVE_HIGH>;
 
 		port {
 			hdmi_con: endpoint {
@@ -1102,8 +1102,8 @@
 };
 
 &mdss_dp0 {
-	sound-name-prefix = "DisplayPort0";
-
+	phys = <&usb_1_ss2_qmpphy 0>;
+	phy-names = "dp";
 	status = "okay";
 };
 
@@ -1113,7 +1113,6 @@
 
 &mdss_dp2 {
 	sound-name-prefix = "DisplayPort2";
-
 	status = "okay";
 };
 
@@ -1478,8 +1477,8 @@
 	};
 
 	hdmi_hpd_default: hdmi-hpd-default-state {
-		pins = "gpio126";
-		function = "usb2_dp";
+		pins = "gpio77";
+		function = "gpio";
 		bias-disable;
 	};
 
@@ -1755,19 +1754,18 @@
 
 			usb_1_ss2_qmpphy_out_dp: endpoint@0 {
 				reg = <0>;
-//				data-lanes = <3 2 1 0>;
+				data-lanes = <3 2 1 0>;
 				remote-endpoint = <&hdmi_bridge_dp_in>;
 			};
 
-			/* No USB3 lanes connected */
+			/* No USB3 lanes connected to external port */
 		};
 	};
 };
 
 &usb_2 {
-	status = "okay";
-
 	dr_mode = "host";
+	status = "okay";
 };
 
 &usb_2_hsphy {
