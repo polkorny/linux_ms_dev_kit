@@ -1034,23 +1034,12 @@
 	//};
 
 &lpass_vamacro {
-	pinctrl-0 = <&dmic01_default>;
-	pinctrl-names = "default";
+	qcom,dmic-sample-rate = <4800000>;
 
 	vdd-micb-supply = <&vreg_l1b_1p8>;
-	qcom,dmic-sample-rate = <4800000>;
-};
 
-&lpass_wsamacro {
-	status = "okay";
-	assigned-clocks = <&q6prmcc 0x42 0x01>;
-	assigned-clock-rates = <19200000>;
-	clock-output-names = "wsa-mclk";
-	#clock-cells = <0>;
-};
-
-&lpass_wsa2macro {
-	status = "disabled";
+	pinctrl-0 = <&dmic01_default>;
+	pinctrl-names = "default";
 };
 
 &mdss {
@@ -1197,8 +1186,6 @@
 };
 
 &pcie6a {
-	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
 
 	vddpe-3v3-supply = <&vreg_nvme>;
 
@@ -1630,16 +1617,12 @@
 	vdda-phy-supply = <&vreg_l2j_1p2>;
 	vdda-pll-supply = <&vreg_l1j_0p8>;
 
-	orientation-switch;
-	mode-switch;
-
 	status = "okay";
 };
 
 &usb_1_ss0 {
-	status = "okay";
-
 	dr_mode = "host";
+	status = "okay";
 };
 
 &usb_1_ss0_dwc3_hs {
@@ -1651,18 +1634,11 @@
 };
 
 &usb_1_ss1_hsphy {
-	vdd-supply = <&vreg_l3j_0p8>;
-	vdda12-supply = <&vreg_l2j_1p2>;
-
-	phys = <&eusb9_repeater>;
-
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_1_ss1 {
-	status = "okay";
-
-	dr_mode = "host";
+	status = "disabled";
 };
 
 &usb_1_ss2_qmpphy {
