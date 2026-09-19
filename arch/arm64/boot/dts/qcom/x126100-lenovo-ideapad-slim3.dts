@@ -1047,8 +1047,7 @@
 };
 
 &mdss_dp0 {
-	phys = <&usb_1_ss2_qmpphy 0>;
-	phy-names = "dp";
+	sound-name-prefix = "DisplayPort0";
 	status = "okay";
 };
 
